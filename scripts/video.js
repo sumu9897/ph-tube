@@ -28,10 +28,11 @@ const displayVideos = (videos) =>{
         card.classList = "card card-compact "
         card.innerHTML =
         `
-        <figure>
+        <figure class="h-[200px] relative">
             <img
             src= ${video.thumbnail}
             alt="Shoes" />
+            <span class="absolute right-2 bottom-2 bg-black text-white rounded p-1">${video.others.posted_date}</span>
         </figure>
         <div class="px-0 py-2 flex gap-2">
         <div>
