@@ -45,6 +45,30 @@ const cardDemo= {
 
 }
 
+const loadDetails = async (videoId) =>{
+    console.log(videoId);
+    const url =`https://openapi.programming-hero.com/api/phero-tube/video/${videoId}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    // console.log(data)
+    displayDetails(data.video);
+}
+
+const displayDetails =(video)=>{
+    console.log(video)
+    const detailContainer = document.getElementById("modal-content")
+    detailContainer.innerHTML = `
+    <img src=${video.thumbnail} />
+    <p>${video.description}</p>
+    `;
+
+    //way-1
+    //document.getElementById("showModalData").click();
+    //Way-2
+    document.getElementById("customModal").showModal();
+
+}
+
 const displayVideos = (videos) =>{
 
     const videoContainer = document.getElementById("videos");
@@ -62,7 +86,7 @@ const displayVideos = (videos) =>{
         videoContainer.classList.add("grid")
     }
     videos.forEach( (video) =>{
-        console.log(video)
+        // console.log(video)
 
         const card = document.createElement("div")
         card.classList = "card card-compact "
@@ -92,7 +116,9 @@ const displayVideos = (videos) =>{
 
         </div>
         
-        <p></p>
+        <p>
+        <button onclick="loadDetails('${video.video_id}')" class ="btn btn-sm btn-error">details</button>
+        </p>
         </div>
 
         </div>
